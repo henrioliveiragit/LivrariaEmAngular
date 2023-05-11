@@ -10,7 +10,7 @@ export class ControleEditoraService {
 
   //funcao recebe codeditora do tipo number como parametro e retorna o nome da editora em string
 
-  getNomeEditora(codEditora: number): string {
+  obterNomeEditora(codEditora: number): string {
     for (let editora of this.editoras) {
       if (editora.codEditora == codEditora) {
         return editora.nome;
@@ -21,7 +21,7 @@ export class ControleEditoraService {
 
   //funcao retorna um array de editoras
 
-  getEditoras(): Array<Editora> {
+  obterEditoras(): Array<Editora> {
     return this.editoras;
   }
 

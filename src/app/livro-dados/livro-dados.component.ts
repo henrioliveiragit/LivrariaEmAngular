@@ -14,9 +14,14 @@ import { Router } from '@angular/router';
 export class LivroDadosComponent {
 
   public livro = Array<Livro>;
-  public autoresForm: string;
   public editoras: Array<Editora>;
+
   public titulo: string = "";
+  public resumo: string = "";
+  public codEditora: number = 0;
+  public autores: string = "";
+  public autoresArray: Array<string> = [];
+  public alerta = false;
 
   private router: Router;
   private controleEditora: ControleEditoraService;
@@ -27,16 +32,29 @@ export class LivroDadosComponent {
     this.controleLivros = controleLivros;
     this.editoras = this.controleEditora.obterEditoras();
     this.router = router;
-    this.autoresForm = '';
   }
 
 
   incluir = () => {
-    let autores = this.autoresForm.split(',');
-    let livro = new Livro(0, 0, "a", "s", autores);
-    this.controleLivros.incluir(livro);
-    this.router.navigate(['/lista']);
-    
+
+    if (this.titulo == "" || this.resumo == "" || this.codEditora == 0 || this.autores == "") {
+      this.alerta = true;
+      return;
+    }
+    else {
+      let tamanho = this.controleLivros.obterLivros().length;
+
+      this.autoresArray = this.autores.split(",");
+
+
+      let livro = new Livro(tamanho + 1, this.codEditora, this.titulo, this.resumo, this.autoresArray);
+      this.controleLivros.incluir(livro);
+      this.router.navigate(['/lista']);
+      console.log(livro)
+    }
+
+
+
   }
 
 }

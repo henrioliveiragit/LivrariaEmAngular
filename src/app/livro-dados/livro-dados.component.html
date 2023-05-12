@@ -1,32 +1,29 @@
 <main>
     <p class="fs-3">Cadastro de Livros</p>
-    <form>
-        <div class="mb-3">
-            <label for="livro.titulo" class="form-label">Título</label>
-            <input type="text" class="form-control" ngModel="titulo">
-            <p>{{titulo}}</p>
+
+    <div class="mb-3">
+        <label for="livro.titulo" class="form-label" >Título</label>
+        <input type="text" class="form-control" [(ngModel)]="titulo">
+    </div>
+    <div class="mb-3">
+        <label for="livro.resumo" class="form-label">Resumo</label>
+        <textarea class="form-control" [(ngModel)]="resumo"></textarea>
+    </div>
+    <div class="mb-3 d-flex">
+        <div class="col-6 ">
+            <label for="livro.titulo" class="form-label">Editora</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="codEditora">
+                <!-- <option selected>Open this select menu</option> -->
+                <option  [value]="editora.codEditora" *ngFor="let editora of editoras">{{editora.nome}}</option>
+            </select>
         </div>
-        <div class="mb-3">
-            <label for="livro.titulo" class="form-label">Resumo</label>
-            <textarea class="form-control"></textarea>
+        <div class="col-6 ">
+            <label for="livro.titulo" class="form-label">Autores</label>
+            <input type="text" class="form-control" [(ngModel)]="autores" placeholder="Separe os autores com ,">
         </div>
-        <div class="mb-3 d-flex">
-            <div class="col-6 ">
-                <label for="livro.titulo" class="form-label">Editora</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-            </div>
-            <div class="col-6 ">
-                <label for="livro.titulo" class="form-label">Autores</label>
-            <input type="text" class="form-control" ngModel="titulo">
-            </div>
-            
-        </div>
-        <!-- <div class="mb-3">
+
+    </div>
+    <!-- <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
@@ -39,6 +36,10 @@
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
-        <button type="submit" (click)="incluir()" class="btn btn-primary">Salvar</button>
-      </form>
+
+        <div class="alert alert-danger" role="alert" *ngIf="alerta == true">
+            Preencha todos os campos corretamente.
+        </div>
+    <button (click)="incluir()" class="btn btn-primary">Salvar</button>
+
 </main>

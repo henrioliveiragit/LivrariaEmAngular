@@ -7,12 +7,14 @@ import { LivroListaComponent } from './livro-lista/livro-lista.component';
 import { LivroDadosComponent } from './livro-dados/livro-dados.component';
 import { ControleLivrosService } from './controle-livros.service';
 import { ControleEditoraService } from './controle-editora.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LivroListaComponent,
-    LivroDadosComponent
+    LivroDadosComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
